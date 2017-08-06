@@ -14,3 +14,5 @@ Once parsing is done the output files should be generated. E.g. output file c.cs
 Output file should be FTPed at a scheduled time. Once the file is processed it should be archived in archive folder.
 ## Assignment Versions
 Version 1.0 - Uploaded Working XML Parser Code
+
+Version 1.1 - Created "Task" Classes for Threads and Renaming packages/classes
