@@ -1,4 +1,4 @@
-package monitor.exhibit;
+package monitor.exhibit.utilities;
 
 import java.util.ArrayList;
 import java.util.List;

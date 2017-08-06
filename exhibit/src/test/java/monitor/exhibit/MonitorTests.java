@@ -6,9 +6,10 @@ import java.io.File;
 
 import org.junit.Test;
 
+import monitor.exhibit.utilities.ApplicationContext;
 import monitor.exhibit.utilities.XMLParser;
 
-public class ExhibitTests {
+public class MonitorTests {
 
 	@Test
 	public void parseXML() {
