@@ -61,13 +61,14 @@ public class XMLParser {
 				String[] timeSplit = time.split(":");
 				int minute = Integer.parseInt(timeSplit[1]) + Integer.parseInt(gracePeriod);
 				int hour = Integer.parseInt(timeSplit[0]);
-				while(minute > 60) {
+				while(minute >= 60) {
 					hour += 1;
 					minute -= 60;
 				}
 				Calendar cal = Calendar.getInstance();
 				cal.set(Calendar.HOUR_OF_DAY, hour);
 				cal.set(Calendar.MINUTE, minute);
+				cal.set(Calendar.SECOND, 0);
 				Date date = cal.getTime();
 				List<Field> fields = readStructure(ele.getElementsByTagName("structure"));
 				ApplicationContext.addInputFile(new InputFile(fileName, date, fields));
@@ -112,6 +113,7 @@ public class XMLParser {
 				Calendar cal = Calendar.getInstance();
 				cal.set(Calendar.HOUR_OF_DAY, hour);
 				cal.set(Calendar.MINUTE, minute);
+				cal.set(Calendar.SECOND, 0);
 				Date date = cal.getTime();
 				List<String> dependencies = new ArrayList<>();
 				for(int j=0; j<ele.getChildNodes().getLength(); j++) {

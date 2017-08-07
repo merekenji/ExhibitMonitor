@@ -12,5 +12,7 @@ public class MonitorMain {
 		Thread poller = new Thread(new Poller());
 		poller.setName("Poller");
 		poller.start();
+		
+		
 	}
 }

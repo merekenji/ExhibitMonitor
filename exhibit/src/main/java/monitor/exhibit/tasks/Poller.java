@@ -12,11 +12,26 @@ public class Poller implements Runnable{
 	public void run() {
 		while(true) {
 			File dir = new File("src/test/resources/input");
-			for(File file : dir.listFiles()) {
-				if(isValidFile(file) && !isDuplicate(file) && isOnTime(file)) {
-					Thread worker = new Thread(new Worker(file));
-					worker.setName("Worker-" + file.getName());
-					worker.start();
+			File[] files = dir.listFiles();
+			if(files != null) {
+				for(File file : dir.listFiles()) {
+					if(isValidFile(file) && !isDuplicate(file) && isOnTime(file)) {
+						File processDir = new File("src/test/resources/process/" + file.getName());
+						boolean renamed = file.renameTo(processDir);
+						Calendar cal = Calendar.getInstance();
+						ApplicationContext.addProcessedFile(file.getName(), cal.getTime());
+						if(!renamed) {
+							System.out.println("Not Moved to Process Folder");
+						}
+						Thread worker = new Thread(new Worker(file));
+						worker.setName("Worker-" + file.getName());
+						worker.start();
+					} else {
+						boolean deleted = file.delete();
+						if(!deleted) {
+							System.out.println("Not Deleted");
+						}
+					}
 				}
 			}
 		}
