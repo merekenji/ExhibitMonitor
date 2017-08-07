@@ -15,13 +15,13 @@ public class MonitorMain {
 		poller.setName("Poller");
 		poller.start();
 		
-		ValidWarehouse vwh = new ValidWarehouse();
-		Thread addValidRecord = new Thread(new ValidRecord(vwh));
+		Warehouse wh = new Warehouse();
+		
+		Thread addValidRecord = new Thread(new ValidRecord(wh));
 		addValidRecord.setName("AddValidRecord");
 		addValidRecord.start();
 		
-		InvalidWarehouse iwh = new InvalidWarehouse();
-		Thread addInvalidRecord = new Thread(new InvalidRecord(iwh));
+		Thread addInvalidRecord = new Thread(new InvalidRecord(wh));
 		addInvalidRecord.setName("AddInvalidRecord");
 		addInvalidRecord.start();
 	}

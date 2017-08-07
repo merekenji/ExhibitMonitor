@@ -1,18 +1,18 @@
 package monitor.exhibit.tasks;
 
-import monitor.exhibit.InvalidWarehouse;
+import monitor.exhibit.Warehouse;
 import monitor.exhibit.utilities.ApplicationContext;
 
 public class InvalidRecord implements Runnable {
-	private InvalidWarehouse wh;
+	private Warehouse wh;
 	
-	public InvalidRecord(InvalidWarehouse wh) {
+	public InvalidRecord(Warehouse wh) {
 		this.wh = wh;
 	}
 	@Override
 	public void run() {
 		while(true) {
-			wh.insertRecord(ApplicationContext.getInvalidRecords().elementAt(0));
+			wh.insertInvalidRecord(ApplicationContext.getInvalidRecords().elementAt(0));
 			ApplicationContext.getInvalidRecords().remove(0);
 		}
 	}

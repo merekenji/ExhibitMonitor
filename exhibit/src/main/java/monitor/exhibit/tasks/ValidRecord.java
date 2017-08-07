@@ -1,18 +1,18 @@
 package monitor.exhibit.tasks;
 
-import monitor.exhibit.ValidWarehouse;
+import monitor.exhibit.Warehouse;
 import monitor.exhibit.utilities.ApplicationContext;
 
 public class ValidRecord implements Runnable {
-	ValidWarehouse wh;
+	Warehouse wh;
 	
-	public ValidRecord(ValidWarehouse wh) {
+	public ValidRecord(Warehouse wh) {
 		this.wh = wh;
 	}
 	@Override
 	public void run() {
 		while(true) {
-			wh.insertRecord(ApplicationContext.getValidRecords().elementAt(0));
+			wh.insertValidRecord(ApplicationContext.getValidRecords().elementAt(0));
 			ApplicationContext.getValidRecords().remove(0);
 		}
 	}

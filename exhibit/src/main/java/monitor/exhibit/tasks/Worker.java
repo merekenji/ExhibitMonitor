@@ -40,6 +40,7 @@ public class Worker implements Runnable {
 				} else {
 					ApplicationContext.addInvalidRecord(new Record(file.getName(), rowNum, date, line));
 				}
+				rowNum++;
 			}
 		} catch(IOException e) {
 			e.printStackTrace();
