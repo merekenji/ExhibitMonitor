@@ -20,3 +20,5 @@ Version 1.1 - Created "Task" Classes for Threads and Renaming Packages/Classes
 Version 1.2 - Completed Poller Task
 
 version 1.3 - Completed Worker Task
+
+Version 1.4 - Completed Valid and Invalid Database Task
