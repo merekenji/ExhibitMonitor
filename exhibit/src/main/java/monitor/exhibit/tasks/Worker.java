@@ -66,7 +66,6 @@ public class Worker implements Runnable {
 	}
 	public boolean isValid(String[] data) {
 		for(InputFile f : ApplicationContext.getInputFiles()) {
-			System.out.println(data.length + ", " + f.getFields().size());
 			if(f.getName().equals(file.getName()) && data.length == f.getFields().size()) {
 				return isValidFields(data, f.getFields());
 			}

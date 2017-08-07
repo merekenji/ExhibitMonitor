@@ -24,7 +24,6 @@ public class RecordDAO {
 			PreparedStatement ps = null;
 
 			try {
-				System.out.println("Test");
 				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila?useSSL=false", "root",
 						"C@pgemin!");
 				ps = con.prepareStatement("INSERT INTO VALID_RECORD(fileName,rowNum,date,value) VALUES(?,?,?,?)");
@@ -66,7 +65,6 @@ public class RecordDAO {
 			PreparedStatement ps = null;
 
 			try {
-				System.out.println("Test invalid");
 				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila?useSSL=false", "root",
 						"C@pgemin!");
 				ps = con.prepareStatement("INSERT INTO INVALID_RECORD(fileName,rowNum,date,value) VALUES(?,?,?,?)");
