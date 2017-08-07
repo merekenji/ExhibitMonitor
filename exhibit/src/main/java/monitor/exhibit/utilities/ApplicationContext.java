@@ -41,11 +41,7 @@ public class ApplicationContext {
 		return outputFiles;
 	}
 	public static void addProcessedFile(String fileName, Date date) {
-		if(processedFiles.get(fileName) == null) {
-			processedFiles.put(fileName, date);
-		} else {
-			processedFiles.get(fileName).setTime(date.getTime());
-		}
+		processedFiles.put(fileName, date);
 	}
 	public static Date getDateFromProcessedFile(String fileName) {
 		return processedFiles.get(fileName);
