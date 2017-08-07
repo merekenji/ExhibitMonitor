@@ -26,3 +26,5 @@ Version 1.4 - Completed Valid and Invalid Database Task
 Version 1.5 - Created DAO classes
 
 Version 1.6 - Renamed Files, Merged Similar Files
+
+Version 1.7 - Completed Input Portion of Project
