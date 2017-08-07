@@ -6,6 +6,7 @@ import monitor.exhibit.dao.RecordDAO;
 import monitor.exhibit.tasks.InvalidRecord;
 import monitor.exhibit.tasks.Poller;
 import monitor.exhibit.tasks.ValidRecord;
+import monitor.exhibit.utilities.ApplicationContext;
 import monitor.exhibit.utilities.XMLParser;
 
 public class MonitorMain {
@@ -18,11 +19,11 @@ public class MonitorMain {
 		
 		RecordDAO recordDAO = new RecordDAO();
 		
-		Thread addValidRecord = new Thread(new ValidRecord(recordDAO));
+		Thread addValidRecord = new Thread(new ValidRecord(recordDAO, ApplicationContext.getValidRecords()));
 		addValidRecord.setName("AddValidRecord");
 		addValidRecord.start();
 		
-		Thread addInvalidRecord = new Thread(new InvalidRecord(recordDAO));
+		Thread addInvalidRecord = new Thread(new InvalidRecord(recordDAO, ApplicationContext.getInvalidRecords()));
 		addInvalidRecord.setName("AddInvalidRecord");
 		addInvalidRecord.start();
 	}

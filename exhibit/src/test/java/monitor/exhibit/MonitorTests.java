@@ -6,6 +6,10 @@ import java.io.File;
 
 import org.junit.Test;
 
+import monitor.exhibit.dao.RecordDAO;
+import monitor.exhibit.tasks.InvalidRecord;
+import monitor.exhibit.tasks.Poller;
+import monitor.exhibit.tasks.ValidRecord;
 import monitor.exhibit.utilities.ApplicationContext;
 import monitor.exhibit.utilities.XMLParser;
 

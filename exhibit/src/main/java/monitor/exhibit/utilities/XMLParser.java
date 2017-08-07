@@ -81,7 +81,10 @@ public class XMLParser {
 			for(int i=0; i<nl.getLength(); i++) {
 				Element ele = (Element) nl.item(i);
 				for(int j=0; j<ele.getChildNodes().getLength(); j++) {
-					fields.add(readField(ele.getChildNodes().item(j)));
+					Field field = readField(ele.getChildNodes().item(j));
+					if(field.getName() != null && field.getType() != null) {
+						fields.add(field);
+					}
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exhibit>
-	<inputfile name="a.csv" time="09:00" grace-period="30">
+	<inputfile name="a.csv" time="18:00" grace-period="30">
 		<structure>
 			<field name="serialNum" type="int" />
 			<field name="firstName" type="text" />

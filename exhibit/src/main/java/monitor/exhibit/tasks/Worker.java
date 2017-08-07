@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,9 +37,15 @@ public class Worker implements Runnable {
 				Calendar cal = Calendar.getInstance();
 				Date date = cal.getTime();
 				if(valid) {
-					ApplicationContext.addValidRecord(new Record(file.getName(), rowNum, date, line));
+					synchronized(ApplicationContext.getValidRecords()) {
+						ApplicationContext.addValidRecord(new Record(file.getName(), rowNum, date, line));
+						ApplicationContext.getValidRecords().notifyAll();
+					}
 				} else {
-					ApplicationContext.addInvalidRecord(new Record(file.getName(), rowNum, date, line));
+					synchronized(ApplicationContext.getInvalidRecords()) {
+						ApplicationContext.addInvalidRecord(new Record(file.getName(), rowNum, date, line));
+						ApplicationContext.getInvalidRecords().notifyAll();
+					}
 				}
 				rowNum++;
 			}
@@ -59,6 +66,7 @@ public class Worker implements Runnable {
 	}
 	public boolean isValid(String[] data) {
 		for(InputFile f : ApplicationContext.getInputFiles()) {
+			System.out.println(data.length + ", " + f.getFields().size());
 			if(f.getName().equals(file.getName()) && data.length == f.getFields().size()) {
 				return isValidFields(data, f.getFields());
 			}
@@ -75,7 +83,7 @@ public class Worker implements Runnable {
 				}
 			} else if(fields.get(i).getType().equals("date")) {
 				try {
-					DateFormat format = DateFormat.getDateInstance();
+					SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
 					format.parse(data[i]);
 				} catch(ParseException e) {
 					return false;

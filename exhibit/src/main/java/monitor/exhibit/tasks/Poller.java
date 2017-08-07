@@ -23,7 +23,7 @@ public class Poller implements Runnable{
 						if(!renamed) {
 							System.out.println("Not Moved to Process Folder");
 						}
-						Thread worker = new Thread(new Worker(file));
+						Thread worker = new Thread(new Worker(processDir));
 						worker.setName("Worker-" + file.getName());
 						worker.start();
 					} else {
