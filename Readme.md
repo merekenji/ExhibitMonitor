@@ -24,3 +24,5 @@ version 1.3 - Completed Worker Task
 Version 1.4 - Completed Valid and Invalid Database Task
 
 Version 1.5 - Created DAO classes
+
+Version 1.6 - Renamed Files, Merged Similar Files
