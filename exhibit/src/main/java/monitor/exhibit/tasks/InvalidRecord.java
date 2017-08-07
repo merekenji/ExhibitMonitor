@@ -1,19 +1,18 @@
 package monitor.exhibit.tasks;
 
-import monitor.exhibit.Warehouse;
+import monitor.exhibit.dao.RecordDAO;
 import monitor.exhibit.utilities.ApplicationContext;
 
 public class InvalidRecord implements Runnable {
-	private Warehouse wh;
+	private RecordDAO recordDAO;
 	
-	public InvalidRecord(Warehouse wh) {
-		this.wh = wh;
+	public InvalidRecord(RecordDAO recordDAO) {
+		this.recordDAO = recordDAO;
 	}
 	@Override
 	public void run() {
 		while(true) {
-			wh.insertInvalidRecord(ApplicationContext.getInvalidRecords().elementAt(0));
-			ApplicationContext.getInvalidRecords().remove(0);
+			recordDAO.insertInvalidRecord(ApplicationContext.getInvalidRecords().elementAt(0));
 		}
 	}
 }

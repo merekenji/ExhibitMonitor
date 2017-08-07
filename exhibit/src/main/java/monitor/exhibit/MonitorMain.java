@@ -2,6 +2,7 @@ package monitor.exhibit;
 
 import java.io.File;
 
+import monitor.exhibit.dao.RecordDAO;
 import monitor.exhibit.tasks.InvalidRecord;
 import monitor.exhibit.tasks.Poller;
 import monitor.exhibit.tasks.ValidRecord;
@@ -15,13 +16,13 @@ public class MonitorMain {
 		poller.setName("Poller");
 		poller.start();
 		
-		Warehouse wh = new Warehouse();
+		RecordDAO recordDAO = new RecordDAO();
 		
-		Thread addValidRecord = new Thread(new ValidRecord(wh));
+		Thread addValidRecord = new Thread(new ValidRecord(recordDAO));
 		addValidRecord.setName("AddValidRecord");
 		addValidRecord.start();
 		
-		Thread addInvalidRecord = new Thread(new InvalidRecord(wh));
+		Thread addInvalidRecord = new Thread(new InvalidRecord(recordDAO));
 		addInvalidRecord.setName("AddInvalidRecord");
 		addInvalidRecord.start();
 	}

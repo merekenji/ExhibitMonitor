@@ -1,19 +1,18 @@
 package monitor.exhibit.tasks;
 
-import monitor.exhibit.Warehouse;
+import monitor.exhibit.dao.RecordDAO;
 import monitor.exhibit.utilities.ApplicationContext;
 
 public class ValidRecord implements Runnable {
-	Warehouse wh;
+	RecordDAO recordDAO = null;
 	
-	public ValidRecord(Warehouse wh) {
-		this.wh = wh;
+	public ValidRecord(RecordDAO recordDAO) {
+		this.recordDAO = recordDAO;
 	}
 	@Override
 	public void run() {
 		while(true) {
-			wh.insertValidRecord(ApplicationContext.getValidRecords().elementAt(0));
-			ApplicationContext.getValidRecords().remove(0);
+			recordDAO.insertValidRecord(ApplicationContext.getValidRecords().elementAt(0));
 		}
 	}
 }
