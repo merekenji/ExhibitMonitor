@@ -6,7 +6,6 @@ import monitor.exhibit.tasks.Poller;
 import monitor.exhibit.utilities.XMLParser;
 
 public class MonitorMain {
-
 	public static void main(String[] args) {
 		File configXML = new File("src/test/resources/config.xml");
 		XMLParser.parse(configXML.getAbsolutePath());
@@ -14,5 +13,4 @@ public class MonitorMain {
 		poller.setName("Poller");
 		poller.start();
 	}
-
 }
