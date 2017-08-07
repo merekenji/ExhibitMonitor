@@ -15,4 +15,6 @@ Output file should be FTPed at a scheduled time. Once the file is processed it s
 ## Assignment Versions
 Version 1.0 - Uploaded Working XML Parser Code
 
-Version 1.1 - Created "Task" Classes for Threads and Renaming packages/classes
+Version 1.1 - Created "Task" Classes for Threads and Renaming Packages/Classes
+
+Version 1.2 - Completed Poller Task
