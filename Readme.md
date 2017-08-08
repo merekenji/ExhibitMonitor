@@ -23,4 +23,6 @@ Version 1.5 - Created DAO classes
 
 Version 1.6 - Renamed Files, Merged Similar Files
 
-Version 1.7 - Completed Input Portion of Project
+Version 1.7 - Completed Input Portion of Assignment
+
+Version 1.8 - Completed Output Portion of Assignment and Organised Existing Codes
