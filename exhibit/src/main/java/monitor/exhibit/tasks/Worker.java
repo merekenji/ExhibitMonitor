@@ -17,25 +17,30 @@ import monitor.exhibit.beans.Record;
 import monitor.exhibit.utilities.ApplicationContext;
 
 public class Worker implements Runnable {
+	
 	private File file;
 	
 	public Worker(File file) {
 		this.file = file;
 	}
+	
 	@Override
 	public void run() {
 		BufferedReader br = null;
 		FileReader fr = null;
 		String line = "";
 		int rowNum = 1;
+		
 		try {
 			fr = new FileReader(file.getAbsolutePath());
 			br = new BufferedReader(fr);
+			
 			while((line = br.readLine()) != null) {
 				String[] data = line.split(",");
 				boolean valid = isValid(data);
 				Calendar cal = Calendar.getInstance();
 				Date date = cal.getTime();
+				
 				if(valid) {
 					synchronized(ApplicationContext.getValidRecords()) {
 						ApplicationContext.addValidRecord(new Record(file.getName(), rowNum, date, line));
@@ -47,6 +52,7 @@ public class Worker implements Runnable {
 						ApplicationContext.getInvalidRecords().notifyAll();
 					}
 				}
+				
 				rowNum++;
 			}
 		} catch(IOException e) {
@@ -64,14 +70,17 @@ public class Worker implements Runnable {
 			}
 		}
 	}
+	
 	public boolean isValid(String[] data) {
 		for(InputFile f : ApplicationContext.getInputFiles()) {
 			if(f.getName().equals(file.getName()) && data.length == f.getFields().size()) {
 				return isValidFields(data, f.getFields());
 			}
 		}
+		
 		return false;
 	}
+	
 	public boolean isValidFields(String[] data, List<Field> fields) {
 		for(int i=0; i<fields.size(); i++) {
 			if(fields.get(i).getType().equals("int")) {
@@ -95,6 +104,8 @@ public class Worker implements Runnable {
 				}
 			}
 		}
+		
 		return true;
 	}
+	
 }

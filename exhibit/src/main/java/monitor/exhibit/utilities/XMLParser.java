@@ -29,11 +29,13 @@ public class XMLParser {
 	private XMLParser() {
 		//to prevent object creation
 	}
+	
 	public static void parse(String p) {
 		path = p;
 		parseXMLFile();
 		readXMLFile();
 	}
+	
 	public static void parseXMLFile() {
 		File file = new File(path);
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -44,6 +46,7 @@ public class XMLParser {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void readXMLFile() {
 		if(doc != null) {
 			Element docEle = doc.getDocumentElement();
@@ -51,6 +54,7 @@ public class XMLParser {
 			readOutputFiles(docEle.getElementsByTagName("outputfile"));
 		}
 	}
+	
 	public static void readInputFiles(NodeList nl) {
 		if(nl != null && nl.getLength() > 0) {
 			for(int i=0; i<nl.getLength(); i++) {
@@ -75,6 +79,7 @@ public class XMLParser {
 			}
 		}
 	}
+	
 	public static List<Field> readStructure(NodeList nl) {
 		List<Field> fields = new ArrayList<>();
 		if(nl != null && nl.getLength() > 0) {
@@ -90,6 +95,7 @@ public class XMLParser {
 		}
 		return fields;
 	}
+	
 	public static Field readField(Node node) {
 		String name = null;
 		String type = null;
@@ -104,6 +110,7 @@ public class XMLParser {
 		}
 		return new Field(name, type);
 	}
+	
 	public static void readOutputFiles(NodeList nl) {
 		if(nl != null && nl.getLength() > 0) {
 			for(int i=0; i<nl.getLength(); i++) {
@@ -120,21 +127,26 @@ public class XMLParser {
 				Date date = cal.getTime();
 				List<String> dependencies = new ArrayList<>();
 				for(int j=0; j<ele.getChildNodes().getLength(); j++) {
-					dependencies.add(readDependency(ele.getChildNodes().item(j)));
+					String dependency = readDependency(ele.getChildNodes().item(j));
+					if(dependency != null) {
+						dependencies.add(dependency);
+					}
 				}
 				ApplicationContext.addOutputFile(new OutputFile(fileName, date, dependencies));
 			}
 		}
 	}
+	
 	public static String readDependency(Node node) {
 		String dependency = null;
 		if(node != null && node.getNodeType() == Node.ELEMENT_NODE) {
 			for(int i=0; i<node.getAttributes().getLength(); i++) {
-				if(node.getAttributes().item(i).getNodeName().equals("dependency")) {
+				if(node.getAttributes().item(i).getNodeName().equals("file")) {
 					dependency = node.getAttributes().item(i).getNodeValue();
 				}
 			}
 		}
 		return dependency;
 	}
+	
 }

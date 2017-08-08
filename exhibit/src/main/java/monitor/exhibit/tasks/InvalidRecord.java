@@ -4,11 +4,11 @@ import java.util.Vector;
 
 import monitor.exhibit.beans.Record;
 import monitor.exhibit.dao.RecordDAO;
-import monitor.exhibit.utilities.ApplicationContext;
 
 public class InvalidRecord implements Runnable {
+	
 	private RecordDAO recordDAO;
-	Vector<Record> records;
+	private Vector<Record> records;
 
 	public InvalidRecord(RecordDAO recordDAO, Vector<Record> records) {
 		this.recordDAO = recordDAO;
@@ -26,8 +26,9 @@ public class InvalidRecord implements Runnable {
 						e.printStackTrace();
 					}
 				}
-				recordDAO.insertInvalidRecord();
+				recordDAO.insertInvalidRecord(records.get(0));
 			}
 		}
 	}
+	
 }

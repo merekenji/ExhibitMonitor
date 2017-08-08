@@ -22,7 +22,7 @@
 			<field name="lastName" type="text" />
 		</structure>
 	</inputfile>
-	<outputfile name="output.csv" time="12:00">
+	<outputfile name="output.csv" time="11:22">
 		<dependency file="a.csv" />
 		<dependency file="b.csv" />
 	</outputfile>
